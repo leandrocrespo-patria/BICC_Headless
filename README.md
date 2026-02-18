@@ -249,8 +249,8 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 ## 📞 Soporte
 
 ### Contacto
-- **Autor**: System Automation Team
-- **Email**: [tu-email@empresa.com]
+- **Autor**: Leandro Crespo - Enterprise Architecture Team
+- **Email**: [leandro.crespo@patria.com]
 - **Issues**: [GitHub Issues](https://github.com/leandrocrespo-patria/BICC_Headless/issues)
 
 ### Documentación Adicional
