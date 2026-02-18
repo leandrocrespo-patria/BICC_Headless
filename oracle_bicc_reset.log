@@ -107,3 +107,107 @@ Symbols not available. Dumping unresolved backtrace:
 2026-02-18 16:01:36,581 - INFO - ============================================================
 2026-02-18 16:01:36,581 - INFO - FIN DE EJECUCIÓN
 2026-02-18 16:01:36,581 - INFO - ============================================================
+2026-02-18 16:10:36,717 - INFO - ============================================================
+2026-02-18 16:10:36,718 - INFO - INICIO DE EJECUCIÓN - 2026-02-18 16:10:36
+2026-02-18 16:10:36,718 - INFO - ============================================================
+2026-02-18 16:10:36,718 - INFO - Inicializando navegador Chrome en modo headless...
+2026-02-18 16:10:43,067 - INFO - Navegador inicializado correctamente
+2026-02-18 16:10:43,068 - INFO - Navegando a Oracle Cloud...
+2026-02-18 16:10:46,979 - INFO - Realizando autenticación...
+2026-02-18 16:10:47,701 - INFO - Esperando carga del dashboard...
+2026-02-18 16:10:51,151 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)': /session/03c390d6028e24c85d1f40f8e88271f6
+2026-02-18 16:10:51,157 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)': /session/03c390d6028e24c85d1f40f8e88271f6
+2026-02-18 16:10:51,161 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)': /session/03c390d6028e24c85d1f40f8e88271f6
+2026-02-18 16:11:07,330 - INFO - ============================================================
+2026-02-18 16:11:07,331 - INFO - INICIO DE EJECUCIÓN - 2026-02-18 16:11:07
+2026-02-18 16:11:07,331 - INFO - ============================================================
+2026-02-18 16:11:07,331 - INFO - Inicializando navegador Chrome en modo headless...
+2026-02-18 16:11:17,363 - INFO - Navegador inicializado correctamente
+2026-02-18 16:11:17,364 - INFO - Navegando a Oracle Cloud...
+2026-02-18 16:11:20,946 - INFO - Realizando autenticación...
+2026-02-18 16:11:21,288 - INFO - Esperando carga del dashboard...
+2026-02-18 16:11:31,289 - INFO - Accediendo a 'Manage Jobs'...
+2026-02-18 16:11:40,738 - INFO - Iniciando procesamiento de 35 filas...
+2026-02-18 16:11:40,740 - INFO - Procesando fila 1/35
+2026-02-18 16:11:49,122 - INFO - Fila 1 procesada exitosamente
+2026-02-18 16:11:49,122 - INFO - Procesando fila 2/35
+2026-02-18 16:11:57,263 - INFO - Fila 2 procesada exitosamente
+2026-02-18 16:11:57,265 - INFO - Procesando fila 3/35
+2026-02-18 16:12:05,328 - INFO - Fila 3 procesada exitosamente
+2026-02-18 16:12:05,329 - INFO - Procesando fila 4/35
+2026-02-18 16:12:13,507 - INFO - Fila 4 procesada exitosamente
+2026-02-18 16:12:13,511 - INFO - Procesando fila 5/35
+2026-02-18 16:12:21,497 - INFO - Fila 5 procesada exitosamente
+2026-02-18 16:12:21,499 - INFO - Procesando fila 6/35
+2026-02-18 16:12:30,174 - INFO - Fila 6 procesada exitosamente
+2026-02-18 16:12:30,175 - INFO - Procesando fila 7/35
+2026-02-18 16:12:38,142 - INFO - Fila 7 procesada exitosamente
+2026-02-18 16:12:38,145 - INFO - Procesando fila 8/35
+2026-02-18 16:12:47,099 - INFO - Fila 8 procesada exitosamente
+2026-02-18 16:12:47,099 - INFO - Procesando fila 9/35
+2026-02-18 16:12:55,501 - INFO - Fila 9 procesada exitosamente
+2026-02-18 16:12:55,501 - INFO - Procesando fila 10/35
+2026-02-18 16:13:03,589 - INFO - Fila 10 procesada exitosamente
+2026-02-18 16:13:03,590 - INFO - Procesando fila 11/35
+2026-02-18 16:13:11,506 - INFO - Fila 11 procesada exitosamente
+2026-02-18 16:13:11,507 - INFO - Procesando fila 12/35
+2026-02-18 16:13:19,474 - INFO - Fila 12 procesada exitosamente
+2026-02-18 16:13:19,475 - INFO - Procesando fila 13/35
+2026-02-18 16:13:31,590 - INFO - Fila 13 procesada exitosamente
+2026-02-18 16:13:31,591 - INFO - Procesando fila 14/35
+2026-02-18 16:13:39,584 - INFO - Fila 14 procesada exitosamente
+2026-02-18 16:13:39,585 - INFO - Procesando fila 15/35
+2026-02-18 16:13:47,972 - INFO - Fila 15 procesada exitosamente
+2026-02-18 16:13:47,973 - INFO - Procesando fila 16/35
+2026-02-18 16:13:55,989 - INFO - Fila 16 procesada exitosamente
+2026-02-18 16:13:55,990 - INFO - Procesando fila 17/35
+2026-02-18 16:14:04,148 - INFO - Fila 17 procesada exitosamente
+2026-02-18 16:14:04,150 - INFO - Procesando fila 18/35
+2026-02-18 16:14:12,285 - INFO - Fila 18 procesada exitosamente
+2026-02-18 16:14:12,286 - INFO - Procesando fila 19/35
+2026-02-18 16:14:20,298 - INFO - Fila 19 procesada exitosamente
+2026-02-18 16:14:20,299 - INFO - Procesando fila 20/35
+2026-02-18 16:14:28,285 - INFO - Fila 20 procesada exitosamente
+2026-02-18 16:14:28,288 - INFO - Procesando fila 21/35
+2026-02-18 16:14:36,380 - INFO - Fila 21 procesada exitosamente
+2026-02-18 16:14:36,380 - INFO - Procesando fila 22/35
+2026-02-18 16:14:44,843 - INFO - Fila 22 procesada exitosamente
+2026-02-18 16:14:44,844 - INFO - Procesando fila 23/35
+2026-02-18 16:14:52,788 - INFO - Fila 23 procesada exitosamente
+2026-02-18 16:14:52,789 - INFO - Procesando fila 24/35
+2026-02-18 16:15:00,692 - INFO - Fila 24 procesada exitosamente
+2026-02-18 16:15:00,696 - INFO - Procesando fila 25/35
+2026-02-18 16:15:12,877 - INFO - Fila 25 procesada exitosamente
+2026-02-18 16:15:12,878 - INFO - Procesando fila 26/35
+2026-02-18 16:15:21,040 - INFO - Fila 26 procesada exitosamente
+2026-02-18 16:15:21,041 - INFO - Procesando fila 27/35
+2026-02-18 16:15:28,985 - INFO - Fila 27 procesada exitosamente
+2026-02-18 16:15:28,986 - INFO - Procesando fila 28/35
+2026-02-18 16:15:36,888 - INFO - Fila 28 procesada exitosamente
+2026-02-18 16:15:36,889 - INFO - Procesando fila 29/35
+2026-02-18 16:15:44,743 - INFO - Fila 29 procesada exitosamente
+2026-02-18 16:15:44,744 - INFO - Procesando fila 30/35
+2026-02-18 16:15:52,733 - INFO - Fila 30 procesada exitosamente
+2026-02-18 16:15:52,739 - INFO - Procesando fila 31/35
+2026-02-18 16:16:01,281 - INFO - Fila 31 procesada exitosamente
+2026-02-18 16:16:01,281 - INFO - Procesando fila 32/35
+2026-02-18 16:16:09,648 - INFO - Fila 32 procesada exitosamente
+2026-02-18 16:16:09,648 - INFO - Procesando fila 33/35
+2026-02-18 16:16:17,668 - INFO - Fila 33 procesada exitosamente
+2026-02-18 16:16:17,673 - INFO - Procesando fila 34/35
+2026-02-18 16:16:25,802 - INFO - Fila 34 procesada exitosamente
+2026-02-18 16:16:25,803 - INFO - Procesando fila 35/35
+2026-02-18 16:16:34,495 - INFO - Fila 35 procesada exitosamente
+2026-02-18 16:16:34,496 - INFO - Procesamiento por lotes completado
+2026-02-18 16:16:34,498 - INFO - ========================================
+2026-02-18 16:16:34,498 - INFO - TRABAJO PRINCIPAL COMPLETADO EXITOSAMENTE
+2026-02-18 16:16:34,498 - INFO - Iniciando logout (paso no crítico)...
+2026-02-18 16:16:34,498 - INFO - ========================================
+2026-02-18 16:16:36,509 - INFO - Página actual antes de logout: https://emfp-test.fa.us2.oraclecloud.com/biacm/faces/setup?Adf-Window-Id=w9lifc5z22&Adf-Page-Id=0
+2026-02-18 16:16:36,532 - INFO - Sign Out encontrado con: //*[contains(text(), 'Sign Out')]
+2026-02-18 16:16:39,442 - INFO - Logout exitoso (Estrategia 1: elemento Sign Out)
+2026-02-18 16:16:43,082 - INFO - Navegador cerrado exitosamente (driver.quit)
+2026-02-18 16:16:43,083 - INFO - ============================================================
+2026-02-18 16:16:43,083 - INFO - FIN DE EJECUCIÓN
+2026-02-18 16:16:43,083 - INFO - Estado: COMPLETADO EXITOSAMENTE
+2026-02-18 16:16:43,083 - INFO - ============================================================

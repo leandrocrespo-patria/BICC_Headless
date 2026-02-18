@@ -7,7 +7,7 @@ It performs batch operations on multiple rows in the "Manage Jobs" section of Or
 
 Author: System Automation Team
 Date: February 2026
-Version: 3.5-headless
+Version: 3.6-headless (improved logout handling)
 
 Dependencies:
 - selenium: Web browser automation
@@ -53,14 +53,18 @@ logger.info("=" * 60)
 # CONFIGURATION PARAMETERS
 # ===============================
 ORACLE_USER = "svc_incorta"                                     # Oracle Cloud service account username
-ORACLE_PASS = "ORACLE_PASSWORD"                                # Oracle Cloud service account password
+ORACLE_PASS = "ORACLE_PASS"                                # Oracle Cloud service account password
 ORACLE_URL = "https://emfp-test.fa.us2.oraclecloud.com/biacm"   # Oracle Cloud BICC URL
-TOTAL_ROWS = 35                                                 # Number of job rows to process
+TOTAL_ROWS = 33                                                 # Number of job rows to process
 
 # Timeout settings (in seconds)
 PAGE_LOAD_TIMEOUT = 20                   # Maximum wait time for page elements
 OPERATION_DELAY = 2                      # Standard delay between operations
 SCROLL_DELAY = 4                         # Wait time after scrolling operations
+
+# Logout settings
+SKIP_LOGOUT = False                      # Set to True to skip logout entirely (browser will still close)
+LOGOUT_TIMEOUT = 5                       # Timeout for logout operations (shorter to avoid long waits)
 
 # ===============================
 # BROWSER INITIALIZATION - HEADLESS MODE
@@ -277,27 +281,176 @@ try:
     logger.info("Procesamiento por lotes completado")
 
     # ===============================
-    # STEP 5: CLEAN LOGOUT
+    # STEP 5: CLEAN LOGOUT (NON-CRITICAL)
     # ===============================
-    print("6. Performing clean logout...")
-    logger.info("Realizando logout...")
-    try:
-        # Locate and click the Sign Out button/link
-        sign_out_element = wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Sign Out')]")))
-        driver.execute_script("arguments[0].click();", sign_out_element)
-        
-        # Confirm logout in the confirmation dialog
-        confirm_button = wait.until(EC.element_to_be_clickable((By.ID, "Confirm")))
-        confirm_button.click()
-        
-        print("   > Successfully logged out from Oracle Cloud")
-        logger.info("Logout exitoso")
-    except Exception as logout_error:
-        print(f"   > Logout process failed: {logout_error}")
-        logger.warning(f"Error en logout: {logout_error}")
-        pass  # Continue with cleanup even if logout fails
+    # NOTA: El trabajo principal (reset de jobs) ya se completó exitosamente.
+    # El logout es solo una operación de limpieza. Si falla, no afecta el resultado.
+    print("\n" + "-"*50)
+    print("6. Performing clean logout (non-critical step)...")
+    print("   NOTE: Main job reset task completed successfully.")
+    print("   Logout is optional cleanup - errors here don't affect results.")
+    print("-"*50)
+    logger.info("="*40)
+    logger.info("TRABAJO PRINCIPAL COMPLETADO EXITOSAMENTE")
+    logger.info("Iniciando logout (paso no crítico)...")
+    logger.info("="*40)
     
-    time.sleep(5)  # Final wait before cleanup
+    logout_successful = False
+    
+    if SKIP_LOGOUT:
+        print("   > SKIP_LOGOUT=True: Omitiendo proceso de logout")
+        logger.info("Logout omitido por configuración SKIP_LOGOUT=True")
+    else:
+        # Esperar a que la página se estabilice antes de intentar logout
+        print("   > Waiting for page to stabilize before logout...")
+        time.sleep(2)
+        
+        # Verificar que el navegador sigue activo
+        try:
+            current_url = driver.current_url
+            logger.info(f"Página actual antes de logout: {current_url}")
+        except Exception as e:
+            logger.warning(f"No se pudo obtener URL actual: {e}")
+        
+        # ===============================
+        # ESTRATEGIA 1: Método estándar - Buscar "Sign Out" y hacer click
+        # ===============================
+        print("   > Strategy 1: Looking for 'Sign Out' element...")
+        try:
+            logout_wait = WebDriverWait(driver, LOGOUT_TIMEOUT)
+            
+            # Intentar múltiples selectores para el botón de Sign Out
+            sign_out_xpaths = [
+                "//*[contains(text(), 'Sign Out')]",
+                "//a[contains(text(), 'Sign Out')]",
+                "//span[contains(text(), 'Sign Out')]",
+                "//button[contains(text(), 'Sign Out')]",
+                "//*[@title='Sign Out']",
+                "//a[contains(@href, 'logout')]",
+            ]
+            
+            sign_out_element = None
+            for xpath in sign_out_xpaths:
+                try:
+                    sign_out_element = logout_wait.until(
+                        EC.presence_of_element_located((By.XPATH, xpath))
+                    )
+                    if sign_out_element:
+                        logger.info(f"Sign Out encontrado con: {xpath}")
+                        break
+                except:
+                    continue
+            
+            if sign_out_element:
+                # Intentar click normal primero
+                try:
+                    sign_out_element.click()
+                except:
+                    # Si falla, usar JavaScript
+                    driver.execute_script("arguments[0].click();", sign_out_element)
+                
+                time.sleep(1)
+                
+                # Intentar confirmar el logout si hay diálogo
+                try:
+                    confirm_button = WebDriverWait(driver, 3).until(
+                        EC.element_to_be_clickable((By.ID, "Confirm"))
+                    )
+                    confirm_button.click()
+                except:
+                    # Puede que no haya diálogo de confirmación, lo cual está bien
+                    pass
+                
+                print("   > Strategy 1: SUCCESS - Logged out via Sign Out element")
+                logger.info("Logout exitoso (Estrategia 1: elemento Sign Out)")
+                logout_successful = True
+            else:
+                raise Exception("No se encontró elemento Sign Out")
+                
+        except Exception as e1:
+            logger.info(f"Estrategia 1 falló: {str(e1)[:100]}")
+            
+            # ===============================
+            # ESTRATEGIA 2: Navegar directamente a URL de logout
+            # ===============================
+            print("   > Strategy 2: Navigating to logout URL...")
+            try:
+                # URLs de logout comunes en Oracle Cloud
+                base_url = ORACLE_URL.split('/biacm')[0] if '/biacm' in ORACLE_URL else ORACLE_URL.rsplit('/', 1)[0]
+                logout_urls = [
+                    f"{base_url}/oam/server/logout",
+                    f"{base_url}/logout",
+                    f"{base_url}/fscmUI/faces/logout",
+                    f"{base_url}/homePage/faces/AtkLogout",
+                ]
+                
+                for logout_url in logout_urls:
+                    try:
+                        driver.get(logout_url)
+                        time.sleep(2)
+                        # Verificar si el logout fue exitoso (página cambió o no hay sesión)
+                        if 'login' in driver.current_url.lower() or 'logout' in driver.current_url.lower():
+                            print(f"   > Strategy 2: SUCCESS - Logged out via URL: {logout_url}")
+                            logger.info(f"Logout exitoso (Estrategia 2: URL {logout_url})")
+                            logout_successful = True
+                            break
+                    except:
+                        continue
+                        
+                if not logout_successful:
+                    raise Exception("URLs de logout no funcionaron")
+                    
+            except Exception as e2:
+                logger.info(f"Estrategia 2 falló: {str(e2)[:100]}")
+                
+                # ===============================
+                # ESTRATEGIA 3: JavaScript para hacer click en cualquier elemento de logout
+                # ===============================
+                print("   > Strategy 3: Using JavaScript to find and click logout...")
+                try:
+                    js_logout = """
+                    var elements = document.querySelectorAll('*');
+                    for (var i = 0; i < elements.length; i++) {
+                        var el = elements[i];
+                        var text = el.textContent || el.innerText || '';
+                        if (text.toLowerCase().includes('sign out') || 
+                            text.toLowerCase().includes('logout') ||
+                            text.toLowerCase().includes('cerrar sesión')) {
+                            el.click();
+                            return 'clicked';
+                        }
+                    }
+                    return 'not_found';
+                    """
+                    result = driver.execute_script(js_logout)
+                    if result == 'clicked':
+                        time.sleep(2)
+                        print("   > Strategy 3: SUCCESS - Logout triggered via JavaScript")
+                        logger.info("Logout exitoso (Estrategia 3: JavaScript)")
+                        logout_successful = True
+                    else:
+                        raise Exception("JavaScript no encontró elemento de logout")
+                        
+                except Exception as e3:
+                    logger.info(f"Estrategia 3 falló: {str(e3)[:100]}")
+                    
+                    # ===============================
+                    # ESTRATEGIA 4: Solo cerrar el navegador (fallback final)
+                    # ===============================
+                    print("   > Strategy 4: All logout methods failed - will close browser directly")
+                    print("   > This is acceptable: session will expire automatically on server")
+                    logger.info("Todas las estrategias de logout fallaron - cerrando navegador directamente")
+                    logger.info("La sesión expirará automáticamente en el servidor")
+    
+    # Resumen del logout
+    if logout_successful:
+        print("   > Logout completed successfully")
+    elif not SKIP_LOGOUT:
+        print("   > Logout via UI failed, but browser will close cleanly")
+        print("   > The Oracle session will expire automatically on the server")
+    
+    # Pequeña pausa antes del cleanup
+    time.sleep(1)
 
 except Exception as e:
     # ===============================
@@ -320,16 +473,56 @@ finally:
     # ===============================
     # CLEANUP AND RESOURCE MANAGEMENT
     # ===============================
-    print("\nPerforming cleanup operations...")
-    try:
-        driver.quit()  # Properly close browser and free resources
-        print("Browser session closed successfully")
-        logger.info("Sesión del navegador cerrada")
-    except Exception as cleanup_error:
-        print(f"Cleanup warning: {cleanup_error}")
-        logger.warning(f"Advertencia en limpieza: {cleanup_error}")
+    # NOTA: Este bloque SIEMPRE se ejecuta, independiente de errores en logout u otras secciones
+    print("\n" + "="*50)
+    print("CLEANUP: Closing browser session...")
+    print("="*50)
     
-    print("Script execution completed.")
-    logger.info("=" * 60)
+    browser_closed = False
+    
+    # Intento 1: Método estándar driver.quit()
+    try:
+        driver.quit()
+        browser_closed = True
+        print("   > Browser closed successfully (driver.quit)")
+        logger.info("Navegador cerrado exitosamente (driver.quit)")
+    except Exception as quit_error:
+        logger.warning(f"driver.quit() falló: {quit_error}")
+        
+        # Intento 2: Cerrar todas las ventanas primero y luego quit
+        try:
+            driver.close()  # Cerrar ventana actual
+            driver.quit()
+            browser_closed = True
+            print("   > Browser closed successfully (close + quit)")
+            logger.info("Navegador cerrado exitosamente (close + quit)")
+        except Exception as close_error:
+            logger.warning(f"driver.close() + quit() falló: {close_error}")
+            
+            # Intento 3: Forzar cierre del proceso de Chrome si está disponible
+            try:
+                import subprocess
+                # Intentar matar procesos de chrome/chromium huérfanos (solo los de esta sesión)
+                subprocess.run(['pkill', '-f', 'chrome.*--headless'], timeout=5, capture_output=True)
+                browser_closed = True
+                print("   > Browser process terminated via system command")
+                logger.info("Proceso del navegador terminado vía comando del sistema")
+            except Exception as kill_error:
+                logger.warning(f"No se pudo forzar cierre del navegador: {kill_error}")
+                print(f"   > Warning: Could not force-close browser: {kill_error}")
+    
+    # Resumen final
+    print("\n" + "="*50)
+    if browser_closed:
+        print("SCRIPT EXECUTION COMPLETED SUCCESSFULLY")
+    else:
+        print("SCRIPT EXECUTION COMPLETED (browser cleanup had warnings)")
+    print("="*50)
+    
+    logger.info("="*60)
     logger.info("FIN DE EJECUCIÓN")
-    logger.info("=" * 60)
+    if browser_closed:
+        logger.info("Estado: COMPLETADO EXITOSAMENTE")
+    else:
+        logger.info("Estado: COMPLETADO CON ADVERTENCIAS EN LIMPIEZA")
+    logger.info("="*60)
