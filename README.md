@@ -5,132 +5,132 @@
 ![Chrome](https://img.shields.io/badge/chrome-webdriver-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Herramienta de automatización para el reseteo masivo de trabajos (jobs) en Oracle ERP Cloud a través de la interfaz web BICC (Business Intelligence Cloud Connector).
+Automation tool for bulk resetting of jobs in Oracle ERP Cloud through the BICC (Business Intelligence Cloud Connector) web interface.
 
-## 📋 Descripción
+## 📋 Description
 
-Este script automatiza el proceso de reseteo de trabajos en Oracle ERP Cloud, específicamente en el módulo "Manage Jobs" de BICC. Utiliza Selenium WebDriver para simular interacciones del usuario y procesar múltiples filas de trabajos de forma batch, optimizado para ejecución en modo headless para entornos de servidor o tareas programadas.
+This script automates the job reset process in Oracle ERP Cloud, specifically in the BICC "Manage Jobs" module. It uses Selenium WebDriver to simulate user interactions and process multiple job rows in batch mode, optimized for headless execution in server environments or scheduled tasks.
 
-### 🎯 Características Principales
+### 🎯 Key Features
 
-- ✅ **Automatización Web Completa**: Navegación automática, autenticación y procesamiento
-- ✅ **Modo Headless**: Ejecución sin interfaz gráfica para servidores y CI/CD
-- ✅ **Procesamiento por Lotes**: Manejo de múltiples trabajos (33 filas por defecto)
-- ✅ **Logging Detallado**: Registro completo de operaciones con timestamps
-- ✅ **Manejo Robusto de Errores**: Recuperación automática y continuidad del procesamiento
-- ✅ **Scrolling Inteligente**: Navegación automática en tablas Oracle dinámicas
-- ✅ **Cleanup Seguro**: Cierre controlado del navegador y recursos
+- ✅ **Complete Web Automation**: Automatic navigation, authentication and processing
+- ✅ **Headless Mode**: Execution without graphical interface for servers and CI/CD
+- ✅ **Batch Processing**: Handling multiple jobs (33 rows by default)
+- ✅ **Detailed Logging**: Complete operation logs with timestamps
+- ✅ **Robust Error Handling**: Automatic recovery and processing continuity
+- ✅ **Smart Scrolling**: Automatic navigation in Oracle dynamic tables
+- ✅ **Safe Cleanup**: Controlled browser and resource closure
 
-## 🛠️ Requisitos del Sistema
+## 🛠️ System Requirements
 
-### Software Requerido
+### Required Software
 - **Python 3.7+**
-- **Google Chrome** (versión actualizada)
-- **ChromeDriver** (compatible con la versión de Chrome instalada)
+- **Google Chrome** (updated version)
+- **ChromeDriver** (compatible with installed Chrome version)
 
-### Dependencias Python
+### Python Dependencies
 ```
 selenium>=4.0.0
 ```
 
-## 📦 Instalación
+## 📦 Installation
 
-### 1. Clonar el Repositorio
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/leandrocrespo-patria/BICC_Headless.git
 cd BICC_Headless
 ```
 
-### 2. Instalar Dependencias
+### 2. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Configurar ChromeDriver
-**Opción A: Instalación Automática (Recomendada)**
+### 3. Configure ChromeDriver
+**Option A: Automatic Installation (Recommended)**
 ```bash
 pip install webdriver-manager
 ```
 
-**Opción B: Instalación Manual**
-1. Descargar ChromeDriver desde [https://chromedriver.chromium.org/](https://chromedriver.chromium.org/)
-2. Agregar ChromeDriver al PATH del sistema
-3. Verificar instalación: `chromedriver --version`
+**Option B: Manual Installation**
+1. Download ChromeDriver from [https://chromedriver.chromium.org/](https://chromedriver.chromium.org/)
+2. Add ChromeDriver to system PATH
+3. Verify installation: `chromedriver --version`
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Variables de Configuración
-Editar las constantes en `oracle_bicc_reset_headless.py`:
+### Configuration Variables
+Edit the constants in `oracle_bicc_reset_headless.py`:
 
 ```python
-# Credenciales de Oracle Cloud
-ORACLE_USER = "tu_usuario"           # Usuario del servicio Oracle
-ORACLE_PASS = "tu_contraseña"        # Contraseña del servicio
-ORACLE_URL = "https://tu-instancia.oraclecloud.com/biacm"  # URL de tu instancia
+# Oracle Cloud Credentials
+ORACLE_USER = "your_username"        # Oracle service user
+ORACLE_PASS = "your_password"        # Service password
+ORACLE_URL = "https://your-instance.oraclecloud.com/biacm"  # Your instance URL
 
-# Configuración de procesamiento
-TOTAL_ROWS = 33                      # Número de filas a procesar
-PAGE_LOAD_TIMEOUT = 20               # Timeout para carga de páginas
-OPERATION_DELAY = 2                  # Delay entre operaciones
+# Processing Configuration
+TOTAL_ROWS = 33                      # Number of rows to process
+PAGE_LOAD_TIMEOUT = 20               # Page load timeout
+OPERATION_DELAY = 2                  # Delay between operations
 ```
 
-### Configuración de Logging
+### Logging Configuration
 ```python
-SKIP_LOGOUT = False                  # True para omitir logout
-LOGOUT_TIMEOUT = 5                   # Timeout para operaciones de logout
+SKIP_LOGOUT = False                  # True to skip logout
+LOGOUT_TIMEOUT = 5                   # Timeout for logout operations
 ```
 
-## 🚀 Uso
+## 🚀 Usage
 
-### Ejecución Básica
+### Basic Execution
 ```bash
 python oracle_bicc_reset_headless.py
 ```
 
-### Ejecución con Logging en Consola
+### Execution with Console Logging
 ```bash
 python oracle_bicc_reset_headless.py 2>&1 | tee execution.log
 ```
 
-### Ejecución Programada (Cron/Task Scheduler)
+### Scheduled Execution (Cron/Task Scheduler)
 ```bash
-# Linux/Mac - Crontab entry para ejecución diaria a las 2:00 AM
-0 2 * * * cd /ruta/al/proyecto && python oracle_bicc_reset_headless.py
+# Linux/Mac - Crontab entry for daily execution at 2:00 AM
+0 2 * * * cd /path/to/project && python oracle_bicc_reset_headless.py
 ```
 
 ```batch
 # Windows - Task Scheduler
-schtasks /create /tn "Oracle BICC Reset" /tr "C:\ruta\al\proyecto\oracle_bicc_reset_headless.py" /sc daily /st 02:00
+schtasks /create /tn "Oracle BICC Reset" /tr "C:\path\to\project\oracle_bicc_reset_headless.py" /sc daily /st 02:00
 ```
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
 BICC_Headless/
-├── 📄 oracle_bicc_reset_headless.py    # Script principal
-├── 📄 requirements.txt                 # Dependencias Python
-├── 📄 README.md                       # Documentación (este archivo)
-├── 📄 INSTRUCCIONES_PROGRAMACION.md   # Documentación técnica
-├── 📄 oracle_bicc_reset.log          # Log de ejecuciones
-└── 📁 Uploads/                       # Archivos auxiliares
+├── 📄 oracle_bicc_reset_headless.py    # Main script
+├── 📄 requirements.txt                 # Python dependencies
+├── 📄 README.md                       # Documentation (this file)
+├── 📄 INSTRUCCIONES_PROGRAMACION.md   # Technical documentation
+├── 📄 oracle_bicc_reset.log          # Execution logs
+└── 📁 Uploads/                       # Auxiliary files
     └── user_message_*.txt
 ```
 
-## 📊 Proceso de Ejecución
+## 📊 Execution Process
 
-### Flujo de Trabajo
-1. **Inicialización**: Configuración del navegador Chrome en modo headless
-2. **Autenticación**: Login automático en Oracle Cloud
-3. **Navegación**: Acceso al módulo "Manage Jobs" 
-4. **Procesamiento**: Iteración sobre las filas de trabajos (0 to TOTAL_ROWS-1)
-   - Localización del elemento de acción
-   - Scrolling inteligente si es necesario
-   - Click en el icono de acciones
-   - Selección de "Reset"
-   - Confirmación de diálogos
-5. **Cleanup**: Logout y cierre seguro del navegador
+### Workflow
+1. **Initialization**: Chrome browser configuration in headless mode
+2. **Authentication**: Automatic login to Oracle Cloud
+3. **Navigation**: Access to "Manage Jobs" module 
+4. **Processing**: Iteration over job rows (0 to TOTAL_ROWS-1)
+   - Action element location
+   - Smart scrolling if necessary
+   - Click on action icon
+   - "Reset" selection
+   - Dialog confirmation
+5. **Cleanup**: Logout and safe browser closure
 
-### Ejemplo de Salida
+### Output Example
 ```
 1. Navigating to Oracle Cloud login page...
 2. Performing user authentication...
@@ -154,112 +154,112 @@ SCRIPT EXECUTION COMPLETED SUCCESSFULLY
 
 ## 📝 Logging
 
-### Archivo de Log
-- **Ubicación**: `oracle_bicc_reset.log` (mismo directorio del script)
-- **Formato**: `YYYY-MM-DD HH:MM:SS - LEVEL - MESSAGE`
+### Log File
+- **Location**: `oracle_bicc_reset.log` (same directory as script)
+- **Format**: `YYYY-MM-DD HH:MM:SS - LEVEL - MESSAGE`
 - **Encoding**: UTF-8
 
-### Ejemplo de Log
+### Log Example
 ```log
 2026-02-18 14:30:15 - INFO - ============================================================
-2026-02-18 14:30:15 - INFO - INICIO DE EJECUCIÓN - 2026-02-18 14:30:15
+2026-02-18 14:30:15 - INFO - EXECUTION START - 2026-02-18 14:30:15
 2026-02-18 14:30:15 - INFO - ============================================================
-2026-02-18 14:30:16 - INFO - Inicializando navegador Chrome en modo headless...
-2026-02-18 14:30:17 - INFO - Navegador inicializado correctamente  
-2026-02-18 14:30:18 - INFO - Navegando a Oracle Cloud...
-2026-02-18 14:30:22 - INFO - Realizando autenticación...
-2026-02-18 14:30:35 - INFO - Iniciando procesamiento de 33 filas...
+2026-02-18 14:30:16 - INFO - Initializing Chrome browser in headless mode...
+2026-02-18 14:30:17 - INFO - Browser initialized successfully  
+2026-02-18 14:30:18 - INFO - Navigating to Oracle Cloud...
+2026-02-18 14:30:22 - INFO - Performing authentication...
+2026-02-18 14:30:35 - INFO - Starting processing of 33 rows...
 ```
 
 ## 🔧 Troubleshooting
 
-### Problemas Comunes
+### Common Issues
 
-#### 1. ChromeDriver no encontrado
+#### 1. ChromeDriver not found
 ```bash
 selenium.common.exceptions.WebDriverException: 'chromedriver' executable needs to be in PATH
 ```
-**Solución**: Instalar ChromeDriver o agregarlo al PATH del sistema.
+**Solution**: Install ChromeDriver or add it to system PATH.
 
-#### 2. Timeout en elementos
+#### 2. Element timeout
 ```bash
 selenium.common.exceptions.TimeoutException: Message: 
 ```
-**Solución**: Incrementar `PAGE_LOAD_TIMEOUT` o verificar selectores XPath.
+**Solution**: Increase `PAGE_LOAD_TIMEOUT` or verify XPath selectors.
 
-#### 3. Problemas de autenticación
+#### 3. Authentication issues
 ```bash
 selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element
 ```
-**Solución**: Verificar credenciales y URL de Oracle Cloud.
+**Solution**: Verify credentials and Oracle Cloud URL.
 
-#### 4. Errores de scrolling
-**Solución**: El script incluye múltiples estrategias de scrolling. Revisar logs para detalles.
+#### 4. Scrolling errors
+**Solution**: The script includes multiple scrolling strategies. Check logs for details.
 
 ### Debug Mode
-Para habilitar modo debug (con interfaz gráfica):
+To enable debug mode (with graphical interface):
 ```python
-# Comentar esta línea en el código:
+# Comment this line in the code:
 # options.add_argument('--headless=new')
 ```
 
-## 🔒 Seguridad
+## 🔒 Security
 
-### Mejores Prácticas
-- **Nunca hardcodear credenciales** en el código fuente
-- Usar variables de entorno para información sensible:
+### Best Practices
+- **Never hardcode credentials** in source code
+- Use environment variables for sensitive information:
   ```python
   import os
   ORACLE_USER = os.getenv('ORACLE_USER', 'default_user')
   ORACLE_PASS = os.getenv('ORACLE_PASS', 'default_pass')
   ```
-- Mantener logs seguros con permisos restrictivos
-- Rotar credenciales regularmente
+- Keep logs secure with restrictive permissions
+- Rotate credentials regularly
 
-## 📈 Rendimiento
+## 📈 Performance
 
-### Métricas Típicas
-- **Tiempo por fila**: ~3-5 segundos
-- **33 filas completas**: ~2-3 minutos
-- **Uso de memoria**: ~100-150 MB (modo headless)
+### Typical Metrics
+- **Time per row**: ~3-5 seconds
+- **33 complete rows**: ~2-3 minutes
+- **Memory usage**: ~100-150 MB (headless mode)
 
-### Optimizaciones
-- Modo headless reduce uso de recursos en ~40%
-- Timeouts configurables para diferentes entornos de red
-- Scrolling inteligente minimiza operaciones DOM
+### Optimizations
+- Headless mode reduces resource usage by ~40%
+- Configurable timeouts for different network environments
+- Smart scrolling minimizes DOM operations
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-### Proceso de Contribución
-1. Fork del repositorio
-2. Crear branch para nueva característica (`git checkout -b feature/nueva-caracteristica`)
-3. Commit de cambios (`git commit -am 'Agregar nueva característica'`)
-4. Push al branch (`git push origin feature/nueva-caracteristica`)
-5. Crear Pull Request
+### Contribution Process
+1. Fork the repository
+2. Create branch for new feature (`git checkout -b feature/new-feature`)
+3. Commit changes (`git commit -am 'Add new feature'`)
+4. Push to branch (`git push origin feature/new-feature`)
+5. Create Pull Request
 
-### Reportar Issues
-- Usar el template de issues en GitHub
-- Incluir logs relevantes
-- Especificar versión de Python, Chrome y ChromeDriver
+### Report Issues
+- Use GitHub issue template
+- Include relevant logs
+- Specify Python, Chrome and ChromeDriver versions
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para detalles.
+This project is under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Soporte
+## 📞 Support
 
-### Contacto
-- **Autor**: System Automation Team
-- **Email**: [tu-email@empresa.com]
+### Contact
+- **Author**: System Automation Team
+- **Email**: [your-email@company.com]
 - **Issues**: [GitHub Issues](https://github.com/leandrocrespo-patria/BICC_Headless/issues)
 
-### Documentación Adicional
+### Additional Documentation
 - [Selenium Documentation](https://selenium-python.readthedocs.io/)
 - [ChromeDriver Documentation](https://chromedriver.chromium.org/getting-started)
 - [Oracle Cloud Documentation](https://docs.oracle.com/en/cloud/)
 
 ---
 
-**Versión**: 3.6-headless (improved logout handling)  
-**Última Actualización**: Febrero 2026  
-**Mantenido por**: leandrocrespo-patria
+**Version**: 3.6-headless (improved logout handling)  
+**Last Update**: February 2026  
+**Maintained by**: leandrocrespo-patria
