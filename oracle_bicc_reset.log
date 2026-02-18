@@ -1,0 +1,109 @@
+2026-02-18 15:55:57,236 - INFO - ============================================================
+2026-02-18 15:55:57,236 - INFO - INICIO DE EJECUCIÓN - 2026-02-18 15:55:57
+2026-02-18 15:55:57,236 - INFO - ============================================================
+2026-02-18 15:55:57,237 - INFO - Inicializando navegador Chrome en modo headless...
+2026-02-18 15:56:00,415 - INFO - Navegador inicializado correctamente
+2026-02-18 15:56:00,415 - INFO - Navegando a Oracle Cloud...
+2026-02-18 15:56:03,277 - INFO - Realizando autenticación...
+2026-02-18 15:56:07,338 - INFO - Esperando carga del dashboard...
+2026-02-18 15:56:17,341 - INFO - Accediendo a 'Manage Jobs'...
+2026-02-18 15:56:25,846 - INFO - Iniciando procesamiento de 35 filas...
+2026-02-18 15:56:25,846 - INFO - Procesando fila 1/35
+2026-02-18 15:56:33,526 - INFO - Fila 1 procesada exitosamente
+2026-02-18 15:56:33,527 - INFO - Procesando fila 2/35
+2026-02-18 15:56:41,184 - INFO - Fila 2 procesada exitosamente
+2026-02-18 15:56:41,184 - INFO - Procesando fila 3/35
+2026-02-18 15:56:49,074 - INFO - Fila 3 procesada exitosamente
+2026-02-18 15:56:49,075 - INFO - Procesando fila 4/35
+2026-02-18 15:56:56,751 - INFO - Fila 4 procesada exitosamente
+2026-02-18 15:56:56,752 - INFO - Procesando fila 5/35
+2026-02-18 15:57:04,428 - INFO - Fila 5 procesada exitosamente
+2026-02-18 15:57:04,429 - INFO - Procesando fila 6/35
+2026-02-18 15:57:12,114 - INFO - Fila 6 procesada exitosamente
+2026-02-18 15:57:12,115 - INFO - Procesando fila 7/35
+2026-02-18 15:57:19,855 - INFO - Fila 7 procesada exitosamente
+2026-02-18 15:57:19,856 - INFO - Procesando fila 8/35
+2026-02-18 15:57:27,629 - INFO - Fila 8 procesada exitosamente
+2026-02-18 15:57:27,630 - INFO - Procesando fila 9/35
+2026-02-18 15:57:35,381 - INFO - Fila 9 procesada exitosamente
+2026-02-18 15:57:35,381 - INFO - Procesando fila 10/35
+2026-02-18 15:57:43,112 - INFO - Fila 10 procesada exitosamente
+2026-02-18 15:57:43,112 - INFO - Procesando fila 11/35
+2026-02-18 15:57:50,884 - INFO - Fila 11 procesada exitosamente
+2026-02-18 15:57:50,885 - INFO - Procesando fila 12/35
+2026-02-18 15:57:58,667 - INFO - Fila 12 procesada exitosamente
+2026-02-18 15:57:58,667 - INFO - Procesando fila 13/35
+2026-02-18 15:58:10,473 - INFO - Fila 13 procesada exitosamente
+2026-02-18 15:58:10,473 - INFO - Procesando fila 14/35
+2026-02-18 15:58:18,318 - INFO - Fila 14 procesada exitosamente
+2026-02-18 15:58:18,318 - INFO - Procesando fila 15/35
+2026-02-18 15:58:26,053 - INFO - Fila 15 procesada exitosamente
+2026-02-18 15:58:26,054 - INFO - Procesando fila 16/35
+2026-02-18 15:58:33,857 - INFO - Fila 16 procesada exitosamente
+2026-02-18 15:58:33,857 - INFO - Procesando fila 17/35
+2026-02-18 15:58:41,602 - INFO - Fila 17 procesada exitosamente
+2026-02-18 15:58:41,602 - INFO - Procesando fila 18/35
+2026-02-18 15:58:49,359 - INFO - Fila 18 procesada exitosamente
+2026-02-18 15:58:49,360 - INFO - Procesando fila 19/35
+2026-02-18 15:58:57,080 - INFO - Fila 19 procesada exitosamente
+2026-02-18 15:58:57,081 - INFO - Procesando fila 20/35
+2026-02-18 15:59:04,825 - INFO - Fila 20 procesada exitosamente
+2026-02-18 15:59:04,825 - INFO - Procesando fila 21/35
+2026-02-18 15:59:12,596 - INFO - Fila 21 procesada exitosamente
+2026-02-18 15:59:12,596 - INFO - Procesando fila 22/35
+2026-02-18 15:59:20,367 - INFO - Fila 22 procesada exitosamente
+2026-02-18 15:59:20,367 - INFO - Procesando fila 23/35
+2026-02-18 15:59:28,254 - INFO - Fila 23 procesada exitosamente
+2026-02-18 15:59:28,256 - INFO - Procesando fila 24/35
+2026-02-18 15:59:36,182 - INFO - Fila 24 procesada exitosamente
+2026-02-18 15:59:36,182 - INFO - Procesando fila 25/35
+2026-02-18 15:59:48,195 - INFO - Fila 25 procesada exitosamente
+2026-02-18 15:59:48,201 - INFO - Procesando fila 26/35
+2026-02-18 15:59:56,223 - INFO - Fila 26 procesada exitosamente
+2026-02-18 15:59:56,226 - INFO - Procesando fila 27/35
+2026-02-18 16:00:04,138 - INFO - Fila 27 procesada exitosamente
+2026-02-18 16:00:04,139 - INFO - Procesando fila 28/35
+2026-02-18 16:00:12,313 - INFO - Fila 28 procesada exitosamente
+2026-02-18 16:00:12,313 - INFO - Procesando fila 29/35
+2026-02-18 16:00:20,243 - INFO - Fila 29 procesada exitosamente
+2026-02-18 16:00:20,243 - INFO - Procesando fila 30/35
+2026-02-18 16:00:28,399 - INFO - Fila 30 procesada exitosamente
+2026-02-18 16:00:28,399 - INFO - Procesando fila 31/35
+2026-02-18 16:00:36,347 - INFO - Fila 31 procesada exitosamente
+2026-02-18 16:00:36,348 - INFO - Procesando fila 32/35
+2026-02-18 16:00:44,296 - INFO - Fila 32 procesada exitosamente
+2026-02-18 16:00:44,298 - INFO - Procesando fila 33/35
+2026-02-18 16:00:52,276 - INFO - Fila 33 procesada exitosamente
+2026-02-18 16:00:52,277 - INFO - Procesando fila 34/35
+2026-02-18 16:01:00,141 - INFO - Fila 34 procesada exitosamente
+2026-02-18 16:01:00,142 - INFO - Procesando fila 35/35
+2026-02-18 16:01:08,007 - INFO - Fila 35 procesada exitosamente
+2026-02-18 16:01:08,007 - INFO - Procesamiento por lotes completado
+2026-02-18 16:01:08,008 - INFO - Realizando logout...
+2026-02-18 16:01:28,524 - WARNING - Error en logout: Message: 
+Stacktrace:
+Symbols not available. Dumping unresolved backtrace:
+	0x7ff66a3d4455
+	0x7ff66a3d44b0
+	0x7ff66a16d49d
+	0x7ff66a1c82fe
+	0x7ff66a1c860c
+	0x7ff66a218b67
+	0x7ff66a215728
+	0x7ff66a1b8e38
+	0x7ff66a1b9d23
+	0x7ff66a6a3b60
+	0x7ff66a69e3e8
+	0x7ff66a6be75a
+	0x7ff66a3f0805
+	0x7ff66a3f97ac
+	0x7ff66a3dd7b4
+	0x7ff66a3dd966
+	0x7ff66a3c3477
+	0x7fffc4b0e8d7
+	0x7fffc5b8c53c
+
+2026-02-18 16:01:36,580 - INFO - Sesión del navegador cerrada
+2026-02-18 16:01:36,581 - INFO - ============================================================
+2026-02-18 16:01:36,581 - INFO - FIN DE EJECUCIÓN
+2026-02-18 16:01:36,581 - INFO - ============================================================

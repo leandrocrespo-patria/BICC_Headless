@@ -1,0 +1,4 @@
+# Dependencias para oracle_bicc_reset_headless.py
+# Instalar con: pip install -r requirements.txt
+
+selenium>=4.0.0
